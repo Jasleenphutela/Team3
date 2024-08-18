@@ -1,0 +1,20 @@
+CREATE SCHEMA `ecommerceappdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+
+
+CREATE TABLE `ecommerceappdb`.`products` (
+  `ProductId` INT NOT NULL,
+  `ProductName` VARCHAR(45) NOT NULL,
+  `ProductPrice` DOUBLE NOT NULL,
+  PRIMARY KEY (`ProductId`));
+
+
+CREATE TABLE `ecommerceappdb`.`subscriptions` (
+  `ProductId` INT NOT NULL,
+  `SubscriptionType` VARCHAR(45) NOT NULL,
+  `SubscriptionStatus` VARCHAR(45) NOT NULL,
+  INDEX `ProductId_idx` (`ProductId` ASC) VISIBLE,
+  CONSTRAINT `ProductId`
+    FOREIGN KEY (`ProductId`)
+    REFERENCES `ecommerceappdb`.`products` (`ProductId`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
